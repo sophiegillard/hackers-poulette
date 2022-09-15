@@ -1,0 +1,168 @@
+/*! minireset.css v0.0.7 | MIT License | github.com/jgthms/minireset.css */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+.reclamation__container {
+  width: 650px;
+  max-width: 1160px;
+}
+.reclamation__container__title {
+  font-size: 32px;
+  margin: 0.67em 0;
+}
+
+.reclamation__div {
+  display: flex;
+  flex-direction: column;
+}
+.reclamation__div label {
+  display: block;
+  font-size: 13px;
+  margin: 10px 0 3px;
+}
+.reclamation__div input, .reclamation__div textarea {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: 300;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: border 0.12s ease-in-out;
+  color: #000;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+  background-color: rgb(255, 133, 109);
+  border: 0;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 14px;
+  line-height: 2.72;
+  min-width: 190px;
+  padding: 0 1.9286em;
+  width: 30%;
+  margin: 10px 0 10px;
+  align-self: center;
+}
+button:hover {
+  background-color: rgb(243, 110, 84);
+}
+
+.file__attachment {
+  /*display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;*/
+  border: 1px solid #ddd;
+  height: auto;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+.file__attachment__title {
+  display: inline-block;
+  line-height: 24px;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+.file__attachment__browser {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+  font-family: GT Walsheim Regular;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=style.css.map */

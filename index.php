@@ -3,13 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>Claim Form</title>
-        <style>
-            .error {color : red;}
-        </style>
+        <link rel="stylesheet" href="style/style.css">
+        <link href="//db.onlinewebfonts.com/c/768446cc3d04d6dd3289ae1715bdb682?family=GT+Walsheim+Regular" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 
-    <?php
+        <?php
     //Call all the necessary files with functions
     require 'PHP/conn.php';
     require 'PHP/test.php';
@@ -18,7 +17,86 @@
     $lastname = $firstname = $email = $file = $description = "";
     $lastnameErr = $firstnameErr = $emailErr = $fileErr = $descriptionErr = "";
 
+    $errors = [];
+    $fields = ['lastname', 'firstname', 'email','file', 'description'];
+    $optionalFields = ['file'];
+    $values = [];
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            foreach ($fields as $field){
+                if (empty($_POST[$field]) && !in_array($field, $optionalFields)){
+                    $errors = [$field];
+                } else {
+                   $values[$field] = test_input($_POST[$field]);
+                }
+            }
+            if (empty($errors)) {
+                foreach ($fields as $field) :
+                    switch ($field){
+                        case "lastname":
+                            if ($field && preg_match("/^[a-zA-Z-']*$/", $field)) {
+                                $values[$field] = test_input($_POST[$field]);
+                                printf("Good %s: %s<br />", $field, $_POST[$field]);
+                            } else {
+                                $lastnameErr = "Please enter letters only";
+                                printf("Error %s: %s<br />", $field, var_export($_POST[$field], TRUE));
+                            } ;
+                            break;
+
+                        case "firstname":
+                        if ($field && preg_match("/^[a-zA-Z-']*$/", $field)) {
+                            $values[$field] = test_input($_POST[$field]);
+                            printf("Good %s: %s<br />", $field, $_POST[$field]);
+                        } else {
+                            $firstnameErr = "Please enter letters only";
+                            printf("Error %s: %s<br />", $field, var_export($_POST[$field], TRUE));
+                        } ;
+                        break;
+
+                        case "email":
+                            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                $values[$field] = test_input($_POST[$field]);
+                                printf("Good %s: %s<br />", $field, $_POST[$field]);
+                            } else {
+                                $emailErr = "Please enter a valid email address";
+                                printf("Error %s: %s<br />", $field, var_export($_POST[$field], TRUE));
+                            } ;
+                            break;
+
+                        case "description":
+                            if (filter_var($description, FILTER_SANITIZE_STRING)) {
+                                $values[$field] = test_input($_POST[$field]);
+                                printf("Good %s: %s<br />", $field, $_POST[$field]);
+                            } else {
+                                $descriptionErrErr = "Please enter a description";
+                                printf("Error %s: %s<br />", $field, var_export($_POST[$field], TRUE));
+                            } ;
+                            break;
+
+                         }
+                    endforeach;
+
+                $isSuccess = $crud->create($_POST['lastname'], $_POST['firstname'], $_POST['email'], $_POST['file'], $_POST['description']);
+
+                if ($isSuccess) {
+
+                    echo "<h4> You message has been sent! </h4>";
+
+                } else {
+
+                    echo "<h4> please fill all the inputs</h4>";
+                }
+
+                };
+
+            }
+
+       // var_dump($values);
+        var_dump($errors);
+
+
+
+/*
     //Check the inserted datas in the form
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //Check last Name
@@ -88,56 +166,47 @@
                 echo "<h4> please fill all the inputs</h4>";
             }
         }
+*/
     ?>
 
-
-    <h2>Reclamation form</h2>
-        <form method="post" action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
-
-            <div>
-                <label for="name">First name</label>
-                <input type="text" name="firstname" value="" >
-                <?php echo $firstnameErr ?>
-            </div>
-
-            <div>
-                <label for="lastname">Last name</label>
-                <input type="text"   name="lastname" value="" >
-                <?php echo $lastnameErr ?>
-            </div>
-
-            <div>
-                <label for="email">Email</label>
-                <input type="email"  name="email" value="" >
-                <?php echo $emailErr ?>
-            </div>
-
-            <div>
-                <label for="file">File</label>
-                <input type="file" name="file" value="">
-                <?php echo $fileErr ?>
-            </div>
-
-            <div>
-                <label for="description">Description</label>
-                <textarea type="text" name="description" rows="6" cols="20" ></textarea>
-                <?php echo $descriptionErr ?>
-            </div>
-
-            <button type="submit" name="button" value="Enter">Envoyer</button>
-
-        </form>
+        <section class="reclamation__container">
+            <h2 class="reclamation__container__title">Reclamation form</h2>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
 
 
-        <?php
-        //DISPLAY DATAS
-        try {
-            $crud->display();
+                    <div>
+                        <label for="lastname">Last name</label>
+                        <input type="text"   name="lastname" value="" >
+                        <?php echo $lastnameErr ?>
+                    </div>
 
+                    <div>
+                        <label for="name">First name</label>
+                        <input type="text" name="firstname" value="" >
+                        <?php echo $firstnameErr ?>
+                    </div>
 
-        } catch (Exception $e) {
-            die('Erreur : '.$e->getMessage(). " la ligne est". $e->getLine());
-        }
-        ?>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email"  name="email" value="" >
+                        <?php echo $emailErr ?>
+                    </div>
+
+                    <div>
+                        <label for="file">File</label>
+                        <input type="file" name="file" value="">
+                        <?php echo $fileErr ?>
+                    </div>
+
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea type="text" name="description" rows="6" cols="20" ></textarea>
+                        <?php echo $descriptionErr ?>
+                    </div>
+
+                    <button type="submit" name="button" value="Enter">Envoyer</button>
+
+                </form>
+        </section>
     </body>
 </html>
