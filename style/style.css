@@ -154,6 +154,40 @@ button:hover {
   background-color: red;
 }
 
+.error {
+  color: #ab0101;
+  background-color: rgba(255, 192, 203, 0.42);
+  font-weight: 100;
+  font-size: 14px;
+  font-family: GT Walsheim Regular;
+  margin-top: 4px;
+  padding: 5px;
+}
+
+.success {
+  color: #256000;
+  background-color: rgba(220, 255, 192, 0.42);
+  font-weight: 100;
+  font-size: 16px;
+  font-family: GT Walsheim Regular;
+  margin-top: 4px;
+  padding: 5px;
+  display: none;
+}
+
+.errorMessageGeneral {
+  display: none;
+  color: #ab0101;
+  background-color: rgba(255, 192, 203, 0.42);
+  font-weight: 100;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: GT Walsheim Regular;
+  margin-top: 4px;
+  padding: 5px;
+}
+
 html {
   display: flex;
   flex-direction: column;
