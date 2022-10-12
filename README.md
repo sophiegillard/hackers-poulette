@@ -1,23 +1,32 @@
-# hackers-poulette
+## Welcome to hackers-poulette Form
 Form Exercice PHP
-# hackers-poulette 09-2022
+# Hackers-poulette Form
 
 ## Web designers
 
 - Sophie
 
 ## What is the project?
+Realisation of a reclamation form. 
+All fields are required except for the file. 
+
+Here is the link to access the form:
+https://reclamationform.000webhostapp.com/index.php
 
 ALL THE CODE IS ON THE DEV BRANCH FOR NOW
 
-Realisation of a reclamation form. 
-All fields are required except the the file. 
+## Overview/Screenshot
+![Recla form](/recla.png)
 
-https://reclamationform.000webhostapp.com/index.php
+## When was it realised?
+September 2022
 
 The project has been realized during a 7-month web developer training. 
-It's the first back-end project. 
+It's my first back-end project. 
 
-I used PHP, SCSS.
+## Languages used
+HTML, PHP, SCSS.
 
-![Recla form](/recla.png)
+## What needs to be improved, added?
+The backend validation is not working well yet. All datas are sent to the database. 
+The JS validation needs to be added
